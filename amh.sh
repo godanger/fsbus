@@ -47,7 +47,7 @@ Php70Version='php-7.2.1';
 NginxVersion='nginx-1.12.2';
 OpenSSLVersion='openssl-1.1.0g';
 NginxCachePurgeVersion='ngx_cache_purge-2.3';
-EchoNginxVersion='echo-nginx-module-0.59';
+EchoNginxVersion='echo-nginx-module-0.61';
 NgxHttpSubstitutionsFilter='ngx_http_substitutions_filter_module-0.6.4';
 PureFTPdVersion='pure-ftpd-1.0.42';
 
@@ -934,7 +934,7 @@ function InstallNginx()
 
 	if [ ! -d /usr/local/nginx ]; then
 		cd $AMHDir/packages/untar/$NginxVersion;
-		./configure --prefix=/usr/local/nginx --user=www --group=www --with-http_ssl_module --with-http_gzip_static_module --without-mail_pop3_module --without-mail_imap_module --without-mail_smtp_module --with-mail --with-mail_ssl_module --without-http_uwsgi_module --without-http_scgi_module --with-pcre --with-openssl=/usr/local/src/$OpenSSLVersion --add-module=/usr/local/src/$NginxCachePurgeVersion  --add-module=/usr/local/src/$EchoNginxVersion --add-module=/usr/local/src/$NgxHttpSubstitutionsFilter;
+		./configure --prefix=/usr/local/nginx --user=www --group=www --with-http_ssl_module --with-http_gzip_static_module --without-mail_pop3_module --without-mail_imap_module --without-mail_smtp_module --with-mail --with-mail_ssl_module --without-http_uwsgi_module --without-http_scgi_module --with-pcre --with-http_v2_module --with-openssl=/usr/local/src/$OpenSSLVersion --add-module=/usr/local/src/$NginxCachePurgeVersion  --add-module=/usr/local/src/$EchoNginxVersion --add-module=/usr/local/src/$NgxHttpSubstitutionsFilter;
 		
 		make -j $Cpunum;
 		make install;

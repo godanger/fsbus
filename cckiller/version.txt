@@ -1,0 +1,4 @@
+version:1.0.7
+configure:unchanged
+Update content:
+1. Fuc Fixed: Add log when ip is ban or unban. 

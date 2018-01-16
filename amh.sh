@@ -52,6 +52,14 @@ NgxHttpSubstitutionsFilter='ngx_http_substitutions_filter_module-0.6.4';
 PureFTPdVersion='pure-ftpd-1.0.42';
 
 # Function List	*****************************************************************************
+# Get public IP address
+get_ip(){
+    local IP=$( ip addr | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | egrep -v "^192\.168|^172\.1[6-9]\.|^172\.2[0-9]\.|^172\.3[0-2]\.|^10\.|^127\.|^255\.|^0\." | head -n 1 )
+    [ -z ${IP} ] && IP=$( wget -qO- -t1 -T2 ipv4.icanhazip.com )
+    [ -z ${IP} ] && IP=$( wget -qO- -t1 -T2 ipinfo.io/ip )
+    [ -z ${IP} ] && IP=$( wget -qO- -t1 -T2 api.ip.sb/ip )
+    [ ! -z ${IP} ] && echo ${IP} || echo
+}
 function CheckSystem()
 {
 	[ $(id -u) != '0' ] && echo '[Error] Please use root to install AMH.' && exit;
@@ -133,12 +141,12 @@ function ConfirmInstall()
 
 function InputDomain()
 {
-	if [ "$Domain" == '' ]; then
+	if [ "$(get_ip)" == '' ]; then
 		echo '[Error] empty server ip.';
 		read -p '[Notice] Please input server ip:' Domain;
-		[ "$Domain" == '' ] && InputDomain;
+		[ "$(get_ip)" == '' ] && InputDomain;
 	fi;
-	[ "$Domain" != '' ] && echo '[OK] Your server ip is:' && echo $Domain;
+	[ "$(get_ip)" != '' ] && echo '[OK] Your server ip is:' && echo $(get_ip);
 }
 
 

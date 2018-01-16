@@ -8,7 +8,14 @@ echo '================================================================';
 echo ' [LNMP/Nginx] Host - AMH 4.5';
 echo '================================================================';
 
-
+# Get public IP address
+get_ip(){
+    local IP=$( ip addr | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | egrep -v "^192\.168|^172\.1[6-9]\.|^172\.2[0-9]\.|^172\.3[0-2]\.|^10\.|^127\.|^255\.|^0\." | head -n 1 )
+    [ -z ${IP} ] && IP=$( wget -qO- -t1 -T2 ipv4.icanhazip.com )
+    [ -z ${IP} ] && IP=$( wget -qO- -t1 -T2 ipinfo.io/ip )
+    [ -z ${IP} ] && IP=$( wget -qO- -t1 -T2 api.ip.sb/ip )
+    [ ! -z ${IP} ] && echo ${IP} || echo
+}
 # VAR ***************************************************************************************
 AMHDir='/home/amh_install/';
 SysName='';
@@ -18,7 +25,7 @@ RamTotal='';
 RamSwap='';
 InstallModel='';
 confirm='';
-Domain=`ip addr | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | egrep -v "^192\.168|^172\.1[6-9]\.|^172\.2[0-9]\.|^172\.3[0-2]\.|^10\.|^127\.|^255\.|^0\." | head -n 1`;
+Domain=$(get_ip);
 MysqlPass='';
 AMHPass='';
 StartDate='';
@@ -52,14 +59,7 @@ NgxHttpSubstitutionsFilter='ngx_http_substitutions_filter_module-0.6.4';
 PureFTPdVersion='pure-ftpd-1.0.42';
 
 # Function List	*****************************************************************************
-# Get public IP address
-get_ip(){
-    local IP=$( ip addr | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | egrep -v "^192\.168|^172\.1[6-9]\.|^172\.2[0-9]\.|^172\.3[0-2]\.|^10\.|^127\.|^255\.|^0\." | head -n 1 )
-    [ -z ${IP} ] && IP=$( wget -qO- -t1 -T2 ipv4.icanhazip.com )
-    [ -z ${IP} ] && IP=$( wget -qO- -t1 -T2 ipinfo.io/ip )
-    [ -z ${IP} ] && IP=$( wget -qO- -t1 -T2 api.ip.sb/ip )
-    [ ! -z ${IP} ] && echo ${IP} || echo
-}
+
 function CheckSystem()
 {
 	[ $(id -u) != '0' ] && echo '[Error] Please use root to install AMH.' && exit;
@@ -141,12 +141,12 @@ function ConfirmInstall()
 
 function InputDomain()
 {
-	if [ "$(get_ip)" == '' ]; then
+	if [ "$Domain" == '' ]; then
 		echo '[Error] empty server ip.';
 		read -p '[Notice] Please input server ip:' Domain;
-		[ "$(get_ip)" == '' ] && InputDomain;
+		[ "$Domain" == '' ] && InputDomain;
 	fi;
-	[ "$(get_ip)" != '' ] && echo '[OK] Your server ip is:' && echo $(get_ip);
+	[ "$Domain" != '' ] && echo '[OK] Your server ip is:' && echo $Domain;
 }
 
 
@@ -1130,7 +1130,7 @@ rm -rf $AMHDir;
 
 echo '================================================================';
 	echo '[AMH] Congratulations, AMH 4.5 install completed.';
-	echo "AMH Management: http://$(get_ip):8888";
+	echo "AMH Management: http://${Domain}:8888";
 	echo 'User:admin';
 	echo "Password:${AMHPass}";
 	echo "MySQL Password:${MysqlPass}";

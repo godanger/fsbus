@@ -1130,7 +1130,7 @@ rm -rf $AMHDir;
 
 echo '================================================================';
 	echo '[AMH] Congratulations, AMH 4.5 install completed.';
-	echo "AMH Management: http://${Domain}:8888";
+	echo "AMH Management: http://$(get_ip):8888";
 	echo 'User:admin';
 	echo "Password:${AMHPass}";
 	echo "MySQL Password:${MysqlPass}";

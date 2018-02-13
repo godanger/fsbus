@@ -36,7 +36,7 @@ PHPDisable='';
 GetUrl='https://godanger.github.io/fsbus';
 
 # Version
-AMHcurl='curl-7.57.0';
+AMHcurl='curl-7.58.0';
 AMSVersion='ams-1.5.0107-02';
 AMHVersion='amh-4.5';
 ConfVersion='conf';
@@ -56,7 +56,7 @@ OpenSSLVersion='openssl-1.1.0g';
 NginxCachePurgeVersion='ngx_cache_purge-2.3';
 EchoNginxVersion='echo-nginx-module-0.61';
 NgxHttpSubstitutionsFilter='ngx_http_substitutions_filter_module-0.6.4';
-PureFTPdVersion='pure-ftpd-1.0.42';
+PureFTPdVersion='pure-ftpd-1.0.47';
 
 # Function List	*****************************************************************************
 
@@ -987,7 +987,7 @@ function InstallPureFTPd()
 {
 	# [dir] /etc/	/usr/local/bin	/usr/local/sbin
 	echo "[${PureFTPdVersion} Installing] ************************************************** >>";
-	Downloadfile "${PureFTPdVersion}.tar.gz" "${GetUrl}/${PureFTPdVersion}.tar.gz";
+	Downloadfile "${PureFTPdVersion}.tar.gz" "https://download.pureftpd.org/pub/pure-ftpd/releases/${PureFTPdVersion}.tar.gz";
 	rm -rf $AMHDir/packages/untar/$PureFTPdVersion;
 	echo "tar -zxf ${PureFTPdVersion}.tar.gz ing...";
 	tar -zxf $AMHDir/packages/$PureFTPdVersion.tar.gz -C $AMHDir/packages/untar;

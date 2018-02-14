@@ -1,15 +1,43 @@
+#!/bin/bash
 echo "========================================================================="
-echo "Thanks for using Transmission 2.92 for CentOS Auto-Install Script"
+echo "Thanks for using Transmission 2.93 for CentOS Auto-Install Script"
 echo "========================================================================="
-
-echo "Preparing....."
-rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm;
-yum -y install transmission transmission-daemon
-
+yum -y install wget xz gcc gcc-c++ m4 make automake libtool gettext openssl-devel pkgconfig perl-libwww-perl perl-XML-Parser curl curl-devel libidn-devel zlib-devel which libevent
+service transmissiond stop
+mv -f /home/transmission/Downloads /home
+rm -rf /home/transmission
+rm -rf /usr/share/transmission
+mkdir /home/transmission
+mv -f /home/Downloads /home/transmission
 cd /root
+wget -c https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz -O intltool-0.51.0.tar.gz
+tar zxf intltool-0.51.0.tar.gz
+cd intltool-0.51.0
+./configure --prefix=/usr
+make -s
+make -s install
+cd ..
+wget -c https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz -O libevent-2.0.22-stable.tar.gz
+tar zxf libevent-2.0.22-stable.tar.gz
+cd libevent-2.0.22-stable
+./configure
+make -s
+make -s install
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+ln -s /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
+ln -s /usr/local/lib/libevent-2.0.so.5.1.9 /usr/lib/libevent-2.0.so.5.1.9
+ln -s /usr/lib/libevent-2.0.so.5 /usr/local/lib/libevent-2.0.so.5
+ln -s /usr/lib/libevent-2.0.so.5.1.9 /usr/local/lib/libevent-2.0.so.5.1.9
+echo install Transmisson
+cd /root
+wget -c https://github.com/transmission/transmission-releases/raw/master/transmission-2.93.tar.xz -O transmission-2.93.tar.xz
+tar Jxvf transmission-2.93.tar.xz
+cd transmission-2.93
+./configure --prefix=/usr
+make -s
+make -s install
 useradd -m transmission
 passwd -d transmission
-
 cd /root
 wget -c https://godanger.github.io/fsbus/Transmission/initd.sh -O /etc/init.d/transmissiond
 chmod 755 /etc/init.d/transmissiond
@@ -23,9 +51,9 @@ mv -f settings.json /home/transmission/.config/transmission/settings.json
 chown -R transmission.transmission /home/transmission/
 mkdir -p /usr/share/transmission/web/
 cd /usr/share/transmission/web/
-wget -c https://godanger.github.io/fsbus/Transmission/src.zip
+wget -c https://raw.githubusercontent.com/ronggang/transmission-web-control/master/release/src.tar.gz
 rm -f index.html
-unzip -o src.zip
+tar zxf  src.tar.gz
 iptables -t nat -F
 iptables -t nat -X
 iptables -t nat -P PREROUTING ACCEPT

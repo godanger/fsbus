@@ -51,9 +51,9 @@ mv -f settings.json /home/transmission/.config/transmission/settings.json
 chown -R transmission.transmission /home/transmission/
 mkdir -p /usr/share/transmission/web/
 cd /usr/share/transmission/web/
-wget -c https://raw.githubusercontent.com/ronggang/transmission-web-control/master/release/src.tar.gz
+wget -c https://godanger.github.io/fsbus/Transmission/src.zip
 rm -f index.html
-tar zxf  src.tar.gz
+unzip -o src.zip
 iptables -t nat -F
 iptables -t nat -X
 iptables -t nat -P PREROUTING ACCEPT

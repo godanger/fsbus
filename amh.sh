@@ -36,12 +36,12 @@ PHPDisable='';
 GetUrl='https://godanger.github.io/fsbus';
 
 # Version
-AMHcurl='curl-7.58.0';
+AMHcurl='curl-7.59.0';
 AMSVersion='ams-1.5.0107-02';
 AMHVersion='amh-4.5';
 ConfVersion='conf';
 LibiconvVersion='libiconv-1.15';
-Mysql55Version='mysql-5.5.55';
+Mysql55Version='mysql-5.5.59';
 Mysql56Version='mysql-5.6.36';
 Mysql57Version='mysql-5.7.18';
 Mariadb55Version='mariadb-5.5.50';
@@ -49,8 +49,8 @@ Mariadb10Version='mariadb-10.1.16';
 Php53Version='php-5.3.29';
 Php54Version='php-5.4.45';
 Php55Version='php-5.5.38';
-Php56Version='php-5.6.33';
-Php70Version='php-7.0.27';
+Php56Version='php-5.6.34';
+Php70Version='php-7.0.28';
 NginxVersion='nginx-1.12.2';
 OpenSSLVersion='openssl-1.1.0g';
 NginxCachePurgeVersion='ngx_cache_purge-2.3';
@@ -396,7 +396,7 @@ function InstallMysql55()
 if [ "$confirm"  == '1' ]; then
 	# [dir] /usr/local/mysql/
 	echo "[${Mysql55Version} Installing] ************************************************** >>";
-	Downloadfile "${Mysql55Version}.tar.gz" "http://download.softagency.net/MySQL/Downloads/MySQL-5.5/${Mysql55Version}.tar.gz";
+	Downloadfile "${Mysql55Version}.tar.gz" "http://mirror.csclub.uwaterloo.ca/mysql/Downloads/MySQL-5.5/${Mysql55Version}.tar.gz";
 	rm -rf $AMHDir/packages/untar/$Mysql55Version;
 	echo "tar -zxf ${Mysql55Version}.tar.gz ing...";
 	tar -zxf $AMHDir/packages/$Mysql55Version.tar.gz -C $AMHDir/packages/untar;
@@ -467,7 +467,7 @@ function InstallMysql56()
 if [ "$confirm"  == '2' ]; then
 	# [dir] /usr/local/mysql/
 	echo "[${Mysql56Version} Installing] ************************************************** >>";
-	Downloadfile "${Mysql56Version}.tar.gz" "http://download.softagency.net/MySQL/Downloads/MySQL-5.6/${Mysql56Version}.tar.gz";
+	Downloadfile "${Mysql56Version}.tar.gz" "http://mirror.csclub.uwaterloo.ca/mysql/Downloads/MySQL-5.6/${Mysql56Version}.tar.gz";
 	rm -rf $AMHDir/packages/untar/$Mysql56Version;
 	echo "tar -zxf ${Mysql56Version}.tar.gz ing...";
 	tar -zxf $AMHDir/packages/$Mysql56Version.tar.gz -C $AMHDir/packages/untar;
@@ -549,7 +549,7 @@ if [ "$confirm"  == '3' ]; then
 	cd $AMHDir/packages;
 	# [dir] /usr/local/mysql/
 	echo "[${Mysql57Version} Installing] ************************************************** >>";
-	Downloadfile "${Mysql57Version}.tar.gz" "http://download.softagency.net/MySQL/Downloads/MySQL-5.7/${Mysql57Version}.tar.gz";
+	Downloadfile "${Mysql57Version}.tar.gz" "http://mirror.csclub.uwaterloo.ca/mysql/Downloads/MySQL-5.7/${Mysql57Version}.tar.gz";
 	rm -rf $AMHDir/packages/untar/$Mysql57Version;
 	echo "tar -zxf ${Mysql57Version}.tar.gz ing...";
 	tar -zxf $AMHDir/packages/$Mysql57Version.tar.gz -C $AMHDir/packages/untar;

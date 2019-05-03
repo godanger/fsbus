@@ -52,7 +52,7 @@ Php55Version='php-5.5.38';
 Php56Version='php-5.6.40';
 Php70Version='php-7.2.18';
 NginxVersion='nginx-1.16.0';
-OpenSSLVersion='openssl-1.1.1';
+OpenSSLVersion='openssl-1.1.1b';
 NginxCachePurgeVersion='ngx_cache_purge-2.3';
 EchoNginxVersion='echo-nginx-module-0.61';
 NgxHttpSubstitutionsFilter='ngx_http_substitutions_filter_module-0.6.4';
@@ -895,7 +895,7 @@ function InstallPhp70()
 	if [ ! -d /usr/local/php7.0 ]; then
 		cd $AMHDir/packages/untar/$Php70Version;
 		if [ "$InstallModel" == '1' ]; then
-			./configure --prefix=/usr/local/php7.0 --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-config-file-path=/usr/local/php7.0/etc --with-config-file-scan-dir=/etc/php.d/7.0 --with-openssl --with-zlib --with-curl=/usr/local/curl/ --enable-ftp --with-gd --with-jpeg-dir --with-png-dir --with-freetype-dir --enable-gd-native-ttf --enable-mbstring --enable-zip --with-iconv=/usr/local/libiconv --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-opcache --without-pear $PHPDisable;
+			./configure --prefix=/usr/local/php7.0 --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-config-file-path=/usr/local/php7.0/etc --with-config-file-scan-dir=/etc/php.d/7.0 --with-openssl --with-zlib --with-curl=/usr/local/curl/ --enable-ftp --with-gd --with-jpeg-dir --with-png-dir --with-freetype-dir --enable-gd-native-ttf --enable-mbstring --enable-zip --with-iconv=/usr/local/libiconv --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-opcache --without-pear --disable-fileinfo $PHPDisable;
 		fi;
 		make -j $Cpunum;
 		make install;

@@ -54,7 +54,7 @@ Php70Version='php-7.4.8';
 NginxVersion='nginx-1.18.0';
 OpenSSLVersion='openssl-1.1.1g';
 NginxCachePurgeVersion='ngx_cache_purge-2.3';
-EchoNginxVersion='echo-nginx-module-0.61';
+EchoNginxVersion='echo-nginx-module-0.62';
 NgxHttpSubstitutionsFilter='ngx_http_substitutions_filter_module-0.6.4';
 PureFTPdVersion='pure-ftpd-1.0.42';
 

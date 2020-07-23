@@ -219,7 +219,7 @@ function InstallBasePackages()
 
         cp /etc/yum.conf /etc/yum.conf.lnmp
         sed -i 's:exclude=.*:exclude=:g' /etc/yum.conf
-        for packages in gcc gcc-c++ ncurses-devel libxml2-devel openssl-devel libjpeg-devel libpng-devel autoconf pcre-devel libtool-libs freetype-devel gd zlib-devel zip unzip wget crontabs iptables file bison cmake patch mlocate flex diffutils automake make  readline-devel git glibc-devel glibc-static glib2-devel  bzip2-devel gettext-devel libcap-devel logrotate ftp openssl sqlite-devel expect; do 
+        for packages in gcc gcc-c++ ncurses-devel libxml2-devel openssl-devel libjpeg-devel libpng-devel autoconf pcre-devel libtool-libs freetype-devel gd zlib-devel zip unzip wget crontabs iptables file bison cmake patch mlocate flex diffutils automake make  readline-devel git glibc-devel glibc-static glib2-devel bzip2-devel gettext-devel libcap-devel logrotate ftp openssl sqlite-devel libcurl-devel libmcrypt-devel recode-devel libicu-devel libzip-devel oniguruma-devel expect; do 
             echo "[${packages} Installing] ************************************************** >>";
             yum -y install $packages; 
         done;

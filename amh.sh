@@ -895,7 +895,7 @@ function InstallPhp70()
 	if [ ! -d /usr/local/php7.0 ]; then
 		cd $AMHDir/packages/untar/$Php70Version;
 		if [ "$InstallModel" == '1' ]; then
-			./configure --prefix=/usr/local/php7.0 --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-config-file-path=/usr/local/php7.0/etc --with-config-file-scan-dir=/etc/php.d/7.0 --with-openssl --with-zlib --with-curl=/usr/local/curl/ --enable-ftp --with-gd --with-jpeg-dir --with-png-dir --with-freetype-dir --enable-gd-native-ttf --enable-mbstring --enable-zip --with-iconv=/usr/local/libiconv --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-opcache --without-pear --disable-fileinfo $PHPDisable;
+			./configure --prefix=/usr/local/php7.0 --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-config-file-path=/usr/local/php7.0/etc --with-config-file-scan-dir=/etc/php.d/7.0 --with-openssl --with-zlib --with-curl=/usr/local/curl/ --enable-ftp --with-gd --with-jpeg-dir --with-png-dir --with-freetype-dir --enable-mbstring --enable-zip --with-iconv=/usr/local/libiconv --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-opcache --without-pear --disable-fileinfo $PHPDisable;
 		fi;
 		make -j $Cpunum;
 		make install;

@@ -36,7 +36,7 @@ PHPDisable='';
 GetUrl='https://godanger.github.io/fsbus';
 
 # Version
-AMHcurl='curl-7.71.1';
+AMHcurl='curl-7.75.0';
 AMSVersion='ams-1.5.0107-02';
 AMHVersion='amh-4.5';
 ConfVersion='conf';
@@ -50,7 +50,7 @@ Php53Version='php-5.3.29';
 Php54Version='php-5.4.45';
 Php55Version='php-5.5.38';
 Php56Version='php-5.6.40';
-Php70Version='php-7.2.32';
+Php70Version='php-7.2.34';
 NginxVersion='nginx-1.18.0';
 OpenSSLVersion='openssl-1.1.1g';
 NginxCachePurgeVersion='ngx_cache_purge-2.3';

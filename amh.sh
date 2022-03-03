@@ -887,7 +887,7 @@ function InstallPhp70()
 {
 	# [dir] /usr/local/php7.0
 	echo "[${Php70Version} Installing] ************************************************** >>";
-	Downloadfile "${Php70Version}.tar.gz" "http://php.net/distributions/${Php70Version}.tar.gz";
+	Downloadfile "${Php70Version}.tar.gz" "${GetUrl}/${Php70Version}.tar.gz";
 	rm -rf $AMHDir/packages/untar/$Php70Version;
 	echo "tar -zxf ${Php70Version}.tar.gz ing...";
 	tar -zxf $AMHDir/packages/$Php70Version.tar.gz -C $AMHDir/packages/untar;

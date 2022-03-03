@@ -765,7 +765,7 @@ function InstallPhp()
 {
 	# [dir] /usr/local/php
 	echo "[${Php56Version} Installing] ************************************************** >>";
-	Downloadfile "${Php56Version}.tar.gz" "http://php.net/distributions/${Php56Version}.tar.gz";
+	Downloadfile "${Php56Version}.tar.gz" "${GetUrl}/${Php56Version}.tar.gz";
 	rm -rf $AMHDir/packages/untar/$Php56Version;
 	echo "tar -zxf ${Php56Version}.tar.gz ing...";
 	tar -zxf $AMHDir/packages/$Php56Version.tar.gz -C $AMHDir/packages/untar;

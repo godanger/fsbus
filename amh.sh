@@ -36,7 +36,7 @@ PHPDisable='';
 GetUrl='https://godanger.github.io/fsbus';
 
 # Version
-AMHcurl='curl-7.75.0';
+AMHcurl='curl-7.81.0';
 AMSVersion='ams-1.5.0107-02';
 AMHVersion='amh-4.5';
 ConfVersion='conf';
@@ -53,9 +53,6 @@ Php56Version='php-5.6.40';
 Php70Version='php-7.2.34';
 NginxVersion='nginx-1.20.2';
 OpenSSLVersion='openssl-1.1.1m';
-NginxCachePurgeVersion='ngx_cache_purge-2.3';
-EchoNginxVersion='echo-nginx-module-0.62';
-NgxHttpSubstitutionsFilter='ngx_http_substitutions_filter_module-0.6.4';
 PureFTPdVersion='pure-ftpd-1.0.42';
 
 # Function List	*****************************************************************************
@@ -361,7 +358,7 @@ function Uninstall()
 function InstallLibiconv()
 {
 	echo "[${LibiconvVersion} Installing] ************************************************** >>";
-	Downloadfile "${LibiconvVersion}.tar.gz" "http://ftp.gnu.org/pub/gnu/libiconv/${LibiconvVersion}.tar.gz";
+	Downloadfile "${LibiconvVersion}.tar.gz" "${GetUrl}/${LibiconvVersion}.tar.gz";
 	rm -rf $AMHDir/packages/untar/$LibiconvVersion;
 	echo "tar -zxf ${LibiconvVersion}.tar.gz ing...";
 	tar -zxf $AMHDir/packages/$LibiconvVersion.tar.gz -C $AMHDir/packages/untar;
@@ -887,7 +884,7 @@ function InstallPhp70()
 {
 	# [dir] /usr/local/php7.0
 	echo "[${Php70Version} Installing] ************************************************** >>";
-	Downloadfile "${Php70Version}.tar.gz" "http://php.net/distributions/${Php70Version}.tar.gz";
+	Downloadfile "${Php70Version}.tar.gz" "${GetUrl}/${Php70Version}.tar.gz";
 	rm -rf $AMHDir/packages/untar/$Php70Version;
 	echo "tar -zxf ${Php70Version}.tar.gz ing...";
 	tar -zxf $AMHDir/packages/$Php70Version.tar.gz -C $AMHDir/packages/untar;
@@ -923,26 +920,11 @@ function InstallNginx()
 	echo "tar -zxf ${NginxVersion}.tar.gz ing...";
 	tar -zxf $AMHDir/packages/$NginxVersion.tar.gz -C $AMHDir/packages/untar;
 
-	#NginxCachePurgeVersion
-	Downloadfile "${NginxCachePurgeVersion}.tar.gz" "http://labs.frickle.com/files/${NginxCachePurgeVersion}.tar.gz";
-	echo "tar -zxf ${NginxCachePurgeVersion}.tar.gz ing...";
-	tar -zxf $AMHDir/packages/$NginxCachePurgeVersion.tar.gz -C /usr/local/src;
 
-	#echo-nginx-module-0.59  
-	Downloadfile "${EchoNginxVersion}.tar.gz" "${GetUrl}/${EchoNginxVersion}.tar.gz";
-    rm -rf /usr/local/src/$EchoNginxVersion;
-    echo "tar -zxf ${EchoNginxVersion}.tar.gz ing...";
-    tar -zxf $AMHDir/packages/$EchoNginxVersion.tar.gz -C /usr/local/src;
-
-    #ngx_http_substitutions_filter_module-0.6.4
-	Downloadfile "${NgxHttpSubstitutionsFilter}.tar.gz" "${GetUrl}/${NgxHttpSubstitutionsFilter}.tar.gz";
-    rm -rf /usr/local/src/$NgxHttpSubstitutionsFilter;
-    echo "tar -zxf ${NgxHttpSubstitutionsFilter}.tar.gz ing...";
-    tar -zxf $AMHDir/packages/$NgxHttpSubstitutionsFilter.tar.gz -C /usr/local/src;
 
 	if [ ! -d /usr/local/nginx ]; then
 		cd $AMHDir/packages/untar/$NginxVersion;
-		./configure --prefix=/usr/local/nginx --user=www --group=www --with-http_ssl_module --with-http_gzip_static_module --without-mail_pop3_module --without-mail_imap_module --without-mail_smtp_module --with-mail --with-mail_ssl_module --without-http_uwsgi_module --without-http_scgi_module --with-pcre --with-http_v2_module --with-openssl=/usr/local/src/$OpenSSLVersion --add-module=/usr/local/src/$NginxCachePurgeVersion  --add-module=/usr/local/src/$EchoNginxVersion --add-module=/usr/local/src/$NgxHttpSubstitutionsFilter;
+		./configure --prefix=/usr/local/nginx --user=www --group=www --with-http_ssl_module --with-http_gzip_static_module --without-mail_pop3_module --without-mail_imap_module --without-mail_smtp_module --with-mail --with-mail_ssl_module --without-http_uwsgi_module --without-http_scgi_module --with-pcre --with-http_v2_module --with-openssl=/usr/local/src/$OpenSSLVersion;
 		
 		make -j $Cpunum;
 		make install;

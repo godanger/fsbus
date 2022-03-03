@@ -396,7 +396,7 @@ function InstallMysql55()
 if [ "$confirm"  == '1' ]; then
 	# [dir] /usr/local/mysql/
 	echo "[${Mysql55Version} Installing] ************************************************** >>";
-	Downloadfile "${Mysql55Version}.tar.gz" "http://mirror.csclub.uwaterloo.ca/mysql/Downloads/MySQL-5.5/${Mysql55Version}.tar.gz";
+	Downloadfile "${Mysql55Version}.tar.gz" "http://mirrors.sohu.com/mysql/MySQL-5.5/${Mysql55Version}.tar.gz";
 	rm -rf $AMHDir/packages/untar/$Mysql55Version;
 	echo "tar -zxf ${Mysql55Version}.tar.gz ing...";
 	tar -zxf $AMHDir/packages/$Mysql55Version.tar.gz -C $AMHDir/packages/untar;

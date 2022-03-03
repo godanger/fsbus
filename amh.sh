@@ -36,7 +36,7 @@ PHPDisable='';
 GetUrl='https://godanger.github.io/fsbus';
 
 # Version
-AMHcurl='curl-7.81.0';
+AMHcurl='curl-7.76.1';
 AMSVersion='ams-1.5.0107-02';
 AMHVersion='amh-4.5';
 ConfVersion='conf';
@@ -245,7 +245,7 @@ echo "[${Installcurl} Installing] **********************************************
    mkdir -p $AMHDir/packages/untar;
    chmod +Rw $AMHDir/packages;
    cd $AMHDir/packages;
-   Downloadfile "${AMHcurl}.tar.gz" "https://curl.se/download/${AMHcurl}.tar.gz";
+   Downloadfile "${AMHcurl}.tar.gz" "${GetUrl}/${AMHcurl}.tar.gz";
    tar -zxf $AMHDir/packages/$AMHcurl.tar.gz -C $AMHDir/packages/untar;
    cd $AMHDir/packages/untar/$AMHcurl;
    ./configure --prefix=/usr/local/curl;
@@ -257,7 +257,7 @@ echo "[${Installcurl} Installing] **********************************************
 else
    echo "[${Installcurl} Installing] ************************************************** >>";
    apt-get install -y gcc g++ cmake make;
-   Downloadfile "${AMHcurl}.tar.gz" "https://curl.se/download/${AMHcurl}.tar.gz";
+   Downloadfile "${AMHcurl}.tar.gz" "${GetUrl}/${AMHcurl}.tar.gz";
    tar -zxf $AMHDir/packages/$AMHcurl.tar.gz -C $AMHDir/packages/untar;
    cd $AMHDir/packages/untar/$AMHcurl;
    ./configure --prefix=/usr/local/curl;
